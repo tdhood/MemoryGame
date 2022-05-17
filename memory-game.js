@@ -8,6 +8,8 @@ const COLORS = [
   "red", "blue", "green", "orange", "purple",
 ];
 
+let cardTotal = COLORS.length;
+
 const colors = shuffle(COLORS);
 
 createCards(colors);
@@ -107,9 +109,10 @@ function handleCardClick(evt) {
  
   if(cardCounter === 2 && cardOne.cardColor === cardTwo.cardColor) {
     cardCounter = 0;
+    cardTotal -= 2;
     return;
   }
-  console.log('cardCounter', cardCounter)
+  console.log('cardCounter', cardCounter, 'cardTotal', cardTotal)
 
   if(cardCounter === 2) {
     cardCounter = 0;
@@ -121,3 +124,40 @@ function handleCardClick(evt) {
   
   console.log('cardCounter', cardCounter)
 }
+
+const Time = 0;
+let timer = Time;
+let intervalID;
+
+function gameTimer(evt) {
+  let game = document.getElementById('game');
+  game.style.pointerEvents = 'all';
+  intervalID = setInterval(tick, 1000);
+}
+
+function tick() {
+  if (cardTotal === 0) {
+    gameOver();
+  } else {
+    timer += 1;
+    updateTimer();
+  }
+}
+
+function updateTimer() {
+  let timerEl = document.getElementById('timer');
+  timerEl.innerText = `Time: ${timer} seconds`
+}
+
+function gameOver() {
+  clearInterval(intervalID);
+
+  
+  if(confirm('Nice Job!\nWant to play again?')) {
+    
+  } else {
+    alert('Thanks for playing!')
+  }
+}
+
+document.getElementById('start').addEventListener('click', gameTimer)

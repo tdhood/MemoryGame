@@ -95,6 +95,7 @@ let cardTwo;
 
 function handleCardClick(evt) {
   console.log('handleCardClick', evt.currentTarget, evt)
+  let game = document.getElementById('game');
   // ... you need to write this ...
   if(cardCounter === 0) {
     cardOne = evt.currentTarget;
@@ -104,7 +105,7 @@ function handleCardClick(evt) {
   }
 
   if(cardCounter < 2){
-  flipCard(evt.currentTarget)
+    flipCard(evt.currentTarget)
   }
  
   if(cardCounter === 2 && cardOne.cardColor === cardTwo.cardColor) {
@@ -115,10 +116,12 @@ function handleCardClick(evt) {
   console.log('cardCounter', cardCounter, 'cardTotal', cardTotal)
 
   if(cardCounter === 2) {
+    game.style.pointerEvents = 'none';
     cardCounter = 0;
     setTimeout(function() {
       unFlipCard(cardOne);
       unFlipCard(cardTwo);
+      game.style.pointerEvents = 'all';
     }, FOUND_MATCH_WAIT_MSECS)
   }
   

@@ -154,7 +154,7 @@ function gameOver() {
 
   
   if(confirm('Nice Job!\nWant to play again?')) {
-    
+    location.reload();
   } else {
     alert('Thanks for playing!')
   }

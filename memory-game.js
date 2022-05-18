@@ -103,7 +103,7 @@ function handleCardClick(evt) {
   }
   if(cardCounter === 1) {
     if(cardOne === evt.currentTarget) {
-      cardCounter = 0;
+      return;
     } else {
       cardTwo = evt.currentTarget;
       console.log('cardTwo', cardTwo)

@@ -99,9 +99,15 @@ function handleCardClick(evt) {
   // ... you need to write this ...
   if(cardCounter === 0) {
     cardOne = evt.currentTarget;
+    console.log('cardOne', cardOne)
   }
   if(cardCounter === 1) {
-    cardTwo = evt.currentTarget;
+    if(cardOne === evt.currentTarget) {
+      cardCounter = 0;
+    } else {
+      cardTwo = evt.currentTarget;
+      console.log('cardTwo', cardTwo)
+    }
   }
 
   if(cardCounter < 2){
